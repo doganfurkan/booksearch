@@ -9,13 +9,14 @@ export const fetchData = createAsyncThunk("book/getData", async (gelen) => {
 });
 
 export const bookSlice = createSlice({
-  name: "weather",
+  name: "book",
   initialState: {
     books: [],
     searchIndex:0,
     searchTerm:"",
     loading: false,
-    gotError: false
+    gotError: false,
+    favoriteBooks:[]
   },
   reducers: {
     changeSearchTerm: (state, action) => {
@@ -24,6 +25,13 @@ export const bookSlice = createSlice({
     changeSearchIndex: (state, action) => {
       state.searchIndex = action.payload;
     },
+    addFavorite: (state, action) => {
+        if(!state.favoriteBooks.find(item => item.id === action.payload.id)){state.favoriteBooks.push(action.payload)}
+    },
+    removeFavorite: (state, action) => {
+        let myIndex = state.favoriteBooks.findIndex(item => item.id === action.payload.id);
+        state.favoriteBooks.splice(myIndex, 1);
+    }
   },
   extraReducers: {
     [fetchData.fulfilled]: (state, action) => {
@@ -41,5 +49,5 @@ export const bookSlice = createSlice({
   },
 });
 
-export const { changeSearchTerm, changeSearchIndex } = bookSlice.actions;
+export const { changeSearchTerm, changeSearchIndex, addFavorite, removeFavorite } = bookSlice.actions;
 export default bookSlice.reducer;

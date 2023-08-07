@@ -119,14 +119,21 @@ main {
   flex-direction: column;
 }
 
-#pagination{
-  width:100%;
+#mainTop{
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  width:100%;
   padding:1rem 2rem;
-  gap:1rem;
   height:6rem;
+  gap:1rem;
+  flex-shrink: 0;
   align-items: center;
+  overflow-x: auto;
+}
+
+#pagination{
+  display: flex;
+  gap:1rem;
   flex-shrink: 0;
 }
 
@@ -136,7 +143,8 @@ main {
   border-radius: 1.5rem;
   color:var(--darkPurple);
   cursor: pointer;
-  border:1px solid var(--darkPurple)
+  border:1px solid var(--darkPurple);
+  white-space: nowrap;
 }
 
 #pagination button:hover,
@@ -151,7 +159,23 @@ main {
   pointer-events: none;
 }
 
-#mainGrid {
+#mySocials{
+  display: flex;
+  gap:1rem;
+}
+
+#mySocials a{
+  color: var(--darkPurple);
+  text-decoration: none;
+}
+
+#mySocials a:hover,
+#mySocials a:focus{
+  text-decoration: underline;
+}
+
+#mainGrid,
+.mainGrid {
   background: var(--white);
   padding: 2rem;
   border-radius: 2rem 0 0;
@@ -218,6 +242,15 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+}
+
+.bookName button.active{
+  background:var(--darkPurple)
+}
+
+.bookName button.active img{
+  filter:brightness(0) saturate(100%) invert(1);
 }
 
 .bookName button img{
@@ -351,7 +384,7 @@ main {
     max-height: fit-content;
   }
 
-  #pagination{
+  #mainTop{
     height: auto;
   }
 

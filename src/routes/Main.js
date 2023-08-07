@@ -13,25 +13,57 @@ export default function Main() {
   const dispatch = useDispatch();
   return (
     <main>
-      <div id="pagination">
-        <button
-          disabled={searchIndex > 0 ? false : true}
-          onClick={() => {
-            dispatch(fetchData([searchTerm, searchIndex - 12]));
-            dispatch(changeSearchIndex(searchIndex - 12));
-          }}
-        >
-          Previous Page
-        </button>
-        <button
-          disabled={books.length < 12 ? true : false}
-          onClick={() => {
-            dispatch(fetchData([searchTerm, searchIndex + 12]));
-            dispatch(changeSearchIndex(searchIndex + 12));
-          }}
-        >
-          Next Page
-        </button>
+      <div id="mainTop">
+        <div id="pagination">
+          <button
+            disabled={searchIndex > 0 ? false : true}
+            onClick={() => {
+              dispatch(fetchData([searchTerm, searchIndex - 12]));
+              dispatch(changeSearchIndex(searchIndex - 12));
+            }}
+          >
+            Previous Page
+          </button>
+          <button
+            disabled={books.length < 12 ? true : false}
+            onClick={() => {
+              dispatch(fetchData([searchTerm, searchIndex + 12]));
+              dispatch(changeSearchIndex(searchIndex + 12));
+            }}
+          >
+            Next Page
+          </button>
+        </div>
+        <div id="mySocials">
+          <a
+            href="https://www.github.com/doganfurkan"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            github
+          </a>
+          <a
+            href="https://www.instagram.com/1furkandogan1"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            instagram
+          </a>
+          <a
+            href="https://www.linkedin.com/in/furkan-doğan"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            linkedin
+          </a>
+          <a
+            href="https://www.frontendmentor.io/profile/doganfurkan"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            frontendmentor
+          </a>
+        </div>
       </div>
       <div id="mainGrid">
         {loading

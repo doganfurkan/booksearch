@@ -1,7 +1,13 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import {Link} from "react-router-dom"
+import { addFavorite, removeFavorite } from "../redux/bookSlice";
+import { useSelector } from "react-redux";
 
 export default function Bookcard({ icerik }) {
+  const dispatch = useDispatch();
+  const yourFavorites = useSelector((state) => state.book.favoriteBooks);
+
   return (
     <div className="bookCard">
       {icerik.volumeInfo.imageLinks ? (
@@ -21,7 +27,9 @@ export default function Bookcard({ icerik }) {
               ? `: ${icerik.volumeInfo.subtitle}`
               : ""}
           </h2>
-          <button>
+          <button className={yourFavorites.find(item => item.id === icerik.id) ? "active" : ""} onClick={(e) => {
+            yourFavorites.find(item => item.id === icerik.id) ? dispatch(removeFavorite(icerik)) : dispatch(addFavorite(icerik))
+          }}>
             <img src="./assets/favoriteIcon.svg" alt="favorite" />
           </button>
         </div>
