@@ -1,38 +1,326 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+:root {
+  --pink: #f7e9ff;
+  --darkPurple: #3d1a53;
+  --white: #fff;
+}
+
+body {
+  background: var(--pink);
+}
+
 .App {
-  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  max-width: 1900px;
+  margin:0 auto
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+aside {
+  padding: 0 2.5rem;
+  max-height: 100vh;
+  overflow-y: auto;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#logo {
+  line-height: 2rem;
+  padding: 2rem 0;
+  color: var(--darkPurple);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#logo h1{
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+#logo button{
+  display: none;
+}
+
+#searchBox {
+  display: flex;
+  background: var(--white);
+  border-radius: 3rem;
+  border: 1px solid var(--darkPurple);
+}
+
+#searchBox input {
+  width: 100%;
+  padding: 0.5rem 0 0.5rem 1.25rem;
+  border-radius: 3rem 0 0 3rem;
+  border: 0;
+}
+
+#searchBox button {
+  padding: 0 1.25rem;
+  background: transparent;
+  border-radius: 0 0.75rem 0.75rem 0;
+  border: 0;
+  display: flex;
+  align-items: center;
+}
+
+aside nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+aside nav a {
+  font-size: 1.25rem;
+  color: var(--darkPurple);
+  text-decoration: none;
+}
+
+aside nav a:hover,
+aside nav a:focus {
+  text-decoration: underline;
+}
+
+#otherProjects{
+  margin-top: 2.5rem;
+}
+
+#otherProjects h2{
+  font-size:1.25rem;
+  color: var(--darkPurple);
+  font-weight: 600;
+  margin-bottom: .5rem;
+}
+
+#otherProjects a{
+  display: block;
+  text-decoration: none;
+  padding:.75rem 0;
+  color:var(--darkPurple);
+  font-size:1.25rem;
+}
+
+#otherProjects a:hover,
+#otherProjects a:focus{
+  text-decoration: underline;
+}
+
+main {
+  overflow-y: auto;
+  max-height: 100vh;
+}
+
+#mySocials{
+  width:100%;
+}
+
+#mySocials ul {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem;
+  padding: 2rem 2.5rem;
+  overflow-x: auto;
+  width: 100%;
+}
+
+#mySocials li {
+  list-style: none;
+}
+
+#mySocials a {
+  text-decoration: none;
+  line-height: 2rem;
+  color: var(--darkPurple);
+}
+
+#mySocials a:hover,
+#mySocials a:focus {
+  text-decoration: underline;
+}
+
+#mainGrid {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 2rem 0 0;
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.bookCard{
+  border:.5rem solid var(--pink);
+  border-radius: 1rem;
+  padding:1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap:1rem;
+}
+
+.bookCard img{
+  border-radius: .5rem;
+}
+
+.bookDetails{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap:.75rem
+}
+
+.bookName{
+  display: flex;
+  gap:1rem;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.bookName h2{
+  font-size: 1rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--darkPurple);
+}
+
+.bookName button{
+  width:1.5rem;
+  aspect-ratio: 1;
+  border:1px solid var(--darkPurple);
+  border-radius: 50%;
+  background: transparent;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.bookName button img{
+  width:60%
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.authorName{
+  font-size:.75rem;
+  color:var(--darkPurple);
+}
+
+.bookButtons{
+  display: flex;
+  gap:.75rem;
+  align-self: stretch;
+  width:100%;
+  overflow: hidden;
+}
+
+.bookButtons button{
+  padding:.5rem 1rem;
+  font-size:.75rem;
+  white-space: nowrap;
+  border-radius: 2rem;
+  width:100%;
+  cursor: pointer;
+  transition: .25s;
+}
+
+.secondary{
+  border: 1px solid var(--darkPurple);
+  background: transparent;
+  color:var(--darkPurple);
+}
+
+.secondary:hover,
+.secondary:focus{
+  background: var(--pink);
+  border:1px solid var(--pink)
+}
+
+.primary{
+  background: var(--darkPurple);
+  color: var(--white);
+  border:1px solid var(--darkPurple)
+}
+
+.primary:hover,
+.primary:focus{
+  background: var(--pink);
+  border:1px solid var(--pink);
+  color: var(--darkPurple);
+}
+
+
+@media screen and (max-width:700px) {
+  .App{
+    display: flex;
+    flex-direction: column;
   }
-  to {
-    transform: rotate(360deg);
+
+  aside{
+    padding: 1.5rem 1.5rem 0;
+    overflow: hidden;
+  }
+
+  #logo{
+    padding:1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #logo button{
+    background: transparent;
+    color: var(--darkPurple);
+    border:0;
+    font-size:2rem;
+    height:2rem;
+    display: flex;
+    align-items: center;
+  }
+
+  #menu{
+    height:0;
+  }
+
+  #menu.active{
+    height:fit-content
+  }
+
+  aside nav{
+    margin:0;
+    gap:1rem;
+    padding-top: 1rem;
+    align-items: center;
+  }
+
+  #otherProjects{
+    display: none;
+  }
+
+  #mySocials ul{
+    justify-content: flex-start;
+    padding:1rem 1.5rem;
+  }
+
+  main{
+    max-height: fit-content;
+    overflow-y: hidden;
+  }
+}
+
+@media screen and (max-width:1000px){
+  .App{
+    grid-template-columns: 1fr 2fr;
+  }
+
+  aside{
+    padding:0 1.5rem
+  }
+}
+
+@media screen and (max-width:1300px){
+  .App{
+    grid-template-columns: 1fr 3fr;
   }
 }
