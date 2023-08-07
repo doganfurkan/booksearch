@@ -1,19 +1,48 @@
 import React from "react";
+import {Link} from "react-router-dom"
 
-export default function Bookcard() {
+export default function Bookcard({ icerik }) {
   return (
     <div className="bookCard">
-      <img src="https://picsum.photos/148/210" alt="#" height="200px" />
+      {icerik.volumeInfo.imageLinks ? (
+        <img
+          src={icerik.volumeInfo.imageLinks.thumbnail}
+          alt="#"
+          height="200px"
+        />
+      ) : (
+        <div className="noImage">No Image</div>
+      )}
       <div className="bookDetails">
         <div className="bookName">
-          <h2>Book Name</h2>
-          <button><img src="./assets/favoriteIcon.svg" alt="favorite" /></button>
+          <h2>
+            {icerik.volumeInfo.title}
+            {icerik.volumeInfo.subtitle
+              ? `: ${icerik.volumeInfo.subtitle}`
+              : ""}
+          </h2>
+          <button>
+            <img src="./assets/favoriteIcon.svg" alt="favorite" />
+          </button>
         </div>
-        <span className="authorName">Author Name</span>
+        <span className="authorName">
+          {icerik.volumeInfo.authors
+            ? icerik.volumeInfo.authors.map((yazar, key) => (
+                <span key={key}>{yazar}</span>
+              ))
+            : "No Author"}
+        </span>
       </div>
       <div className="bookButtons">
-        <button className="secondary">Preview</button>
-        <button className="primary">See Details</button>
+        <a
+          className="secondary"
+          href={icerik.volumeInfo.previewLink}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Preview
+        </a>
+        <Link className="primary" to={`./book/${icerik.id}`}>See Details</Link>
       </div>
     </div>
   );

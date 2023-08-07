@@ -79,6 +79,10 @@ aside nav a {
   text-decoration: none;
 }
 
+aside nav a.active{
+  font-weight:600
+}
+
 aside nav a:hover,
 aside nav a:focus {
   text-decoration: underline;
@@ -110,35 +114,41 @@ aside nav a:focus {
 
 main {
   overflow-y: auto;
-  max-height: 100vh;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-#mySocials{
+#pagination{
   width:100%;
-}
-
-#mySocials ul {
   display: flex;
   justify-content: flex-end;
-  gap: 2rem;
-  padding: 2rem 2.5rem;
-  overflow-x: auto;
-  width: 100%;
+  padding:1rem 2rem;
+  gap:1rem;
+  height:6rem;
+  align-items: center;
+  flex-shrink: 0;
 }
 
-#mySocials li {
-  list-style: none;
+#pagination button{
+  padding:.5rem 1rem;
+  background: transparent;
+  border-radius: 1.5rem;
+  color:var(--darkPurple);
+  cursor: pointer;
+  border:1px solid var(--darkPurple)
 }
 
-#mySocials a {
-  text-decoration: none;
-  line-height: 2rem;
-  color: var(--darkPurple);
+#pagination button:hover,
+#pagination button:focus{
+  background: var(--darkPurple);
+  color:var(--white)
 }
 
-#mySocials a:hover,
-#mySocials a:focus {
-  text-decoration: underline;
+#pagination button:disabled{
+  color:#bbb;
+  border-color:#bbb;
+  pointer-events: none;
 }
 
 #mainGrid {
@@ -147,7 +157,9 @@ main {
   border-radius: 2rem 0 0;
   display: grid;
   grid-gap: 2rem;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  flex-grow: 1;
+  align-items: start;
 }
 
 .bookCard{
@@ -164,6 +176,17 @@ main {
   border-radius: .5rem;
 }
 
+.bookCard .noImage{
+  height: 200px;
+  display: flex;
+  align-items: center;
+  width:141px;
+  border:1px solid #ccc;
+  justify-content: center;
+  border-radius: .5rem;
+  user-select: none;
+}
+
 .bookDetails{
   width: 100%;
   display: flex;
@@ -176,13 +199,12 @@ main {
   gap:1rem;
   justify-content: space-between;
   width: 100%;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .bookName h2{
   font-size: 1rem;
   font-weight: 600;
-  white-space: nowrap;
   color: var(--darkPurple);
 }
 
@@ -207,6 +229,22 @@ main {
   color:var(--darkPurple);
 }
 
+.authorName span{
+  margin-right:.3rem;
+}
+
+.authorName span::after{
+  content: ",";
+}
+
+.authorName span:last-child{
+  margin:0
+}
+
+.authorName span:last-child::after{
+  display: none;
+}
+
 .bookButtons{
   display: flex;
   gap:.75rem;
@@ -215,7 +253,7 @@ main {
   overflow: hidden;
 }
 
-.bookButtons button{
+.bookButtons a{
   padding:.5rem 1rem;
   font-size:.75rem;
   white-space: nowrap;
@@ -223,6 +261,10 @@ main {
   width:100%;
   cursor: pointer;
   transition: .25s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
 }
 
 .secondary{
@@ -255,11 +297,13 @@ main {
   .App{
     display: flex;
     flex-direction: column;
+    min-height:100svh;
   }
 
   aside{
-    padding: 1.5rem 1.5rem 0;
+    padding:0.5rem 2rem 0 !important;
     overflow: hidden;
+    flex-shrink: 0;
   }
 
   #logo{
@@ -298,14 +342,25 @@ main {
     display: none;
   }
 
-  #mySocials ul{
-    justify-content: flex-start;
-    padding:1rem 1.5rem;
+  main{
+    overflow-y: hidden;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: fit-content;
   }
 
-  main{
-    max-height: fit-content;
-    overflow-y: hidden;
+  #pagination{
+    height: auto;
+  }
+
+  #pagination button{
+    width:100%
+  }
+
+  #mainGrid{
+    flex-grow: 1;
   }
 }
 

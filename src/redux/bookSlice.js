@@ -1,41 +1,45 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const fetchData = createAsyncThunk("weather/getData", async (gelen) => {
-  const res = await axios(``);
+export const fetchData = createAsyncThunk("book/getData", async (gelen) => {
+  const res = await axios(
+    `https://www.googleapis.com/books/v1/volumes?q=${gelen[0]}&maxResults=12&startIndex=${gelen[1]}`
+  );
   return res.data;
 });
 
-export const weatherSlice = createSlice({
+export const bookSlice = createSlice({
   name: "weather",
   initialState: {
-    city: "Istanbul",
-    lat: 5,
+    books: [],
+    searchIndex:0,
+    searchTerm:"",
     loading: false,
+    gotError: false
   },
   reducers: {
-    changeType: (state, action) => {
-      state.type = action.payload;
+    changeSearchTerm: (state, action) => {
+      state.searchTerm = action.payload;
     },
-    changeParas: (state, action) => {
-      state.paras = action.payload;
+    changeSearchIndex: (state, action) => {
+      state.searchIndex = action.payload;
     },
   },
   extraReducers: {
     [fetchData.fulfilled]: (state, action) => {
       state.loading = false;
-      state.city = `${action.payload.name}, ${action.payload.sys.country}`;
-      state.daily.temp = action.payload.main.temp;
-      state.daily.min = action.payload.main.temp_min;
-      state.daily.max = action.payload.main.temp_max;
-      state.daily.feels = action.payload.main.feels_like;
-      state.daily.desc = action.payload.weather[0].description;
-      state.daily.icon = action.payload.weather[0].icon;
-      state.lat = action.payload.coord.lat;
-      state.lon = action.payload.coord.lon;
+      state.books = action.payload.items;
     },
     [fetchData.pending]: (state) => {
       state.loading = true;
+      state.gotError = false;
+    },
+    [fetchData.rejected]: (state) => {
+      state.loading = false;
+      state.gotError = true;
     },
   },
 });
+
+export const { changeSearchTerm, changeSearchIndex } = bookSlice.actions;
+export default bookSlice.reducer;

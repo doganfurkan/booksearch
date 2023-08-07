@@ -1,7 +1,13 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { fetchData } from "../redux/bookSlice";
+import { changeSearchTerm } from "../redux/bookSlice";
+import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
-  const [menuOpen,setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const dispatch = useDispatch();
+  const [searchTerm, setSearchTerm] = useState("");
 
   return (
     <aside>
@@ -9,9 +15,24 @@ export default function Navbar() {
         <h1>Book Search</h1>
         <button onClick={() => setMenuOpen(!menuOpen)}>&#8801;</button>
       </div>
-      <form action="/">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          dispatch(fetchData([`${searchTerm}`, 0]));
+          dispatch(changeSearchTerm(searchTerm));
+          setSearchTerm("");
+        }}
+      >
         <div id="searchBox">
-          <input type="text" placeholder="Search" />
+          <input
+            type="text"
+            placeholder="Search"
+            value={searchTerm}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+            }}
+            required
+          />
           <button>
             <img src="./assets/searchIcon.svg" alt="search" />
           </button>
@@ -19,46 +40,60 @@ export default function Navbar() {
       </form>
       <div id="menu" className={menuOpen ? "active" : ""}>
         <nav>
-          <a href="#home">Home</a>
-          <a href="#favorites">Favorites</a>
-          <a href="#about">About</a>
+          <NavLink
+            to="/"
+            className={({ isActive, isPending }) =>
+              isPending ? "pending" : isActive ? "active" : ""
+            }
+          >
+            Home
+          </NavLink>
+          <NavLink
+            to="/favorites"
+            className={({ isActive, isPending }) =>
+              isPending ? "pending" : isActive ? "active" : ""
+            }
+          >
+            Favorites
+          </NavLink>
+          <NavLink
+            to="/about"
+            className={({ isActive, isPending }) =>
+              isPending ? "pending" : isActive ? "active" : ""
+            }
+          >
+            About
+          </NavLink>
         </nav>
         <div id="otherProjects">
-          <h2>My Other Projects</h2>
+          <h2>My Social Accounts</h2>
           <a
-            href="https://doganfurkan.github.io/Furcar"
+            href="https://www.github.com/doganfurkan"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Rent A Car Website
+            github
           </a>
           <a
-            href="https://bmi-calculator-fd.netlify.app"
+            href="https://www.instagram.com/1furkandogan1"
             target="_blank"
             rel="noopener noreferrer"
           >
-            BMI Calculator
+            instagram
           </a>
           <a
-            href="https://doganfurkan.github.io/easybank-landing-page-master"
+            href="https://www.linkedin.com/in/furkan-doğan"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Bank Website
+            linkedin
           </a>
           <a
-            href="https://country-fd.netlify.app"
+            href="https://www.frontendmentor.io/profile/doganfurkan"
             target="_blank"
             rel="noopener noreferrer"
           >
-            Country List App
-          </a>
-          <a
-            href="https://weatherredux.netlify.app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Weather App
+            frontendmentor
           </a>
         </div>
       </div>
