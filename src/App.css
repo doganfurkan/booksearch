@@ -119,7 +119,7 @@ main {
   flex-direction: column;
 }
 
-#mainTop{
+.mainTop{
   display: flex;
   justify-content: space-between;
   width:100%;
@@ -162,6 +162,8 @@ main {
 #mySocials{
   display: flex;
   gap:1rem;
+  justify-content: flex-end;
+  flex-grow: 1;
 }
 
 #mySocials a{
@@ -230,6 +232,10 @@ main {
   font-size: 1rem;
   font-weight: 600;
   color: var(--darkPurple);
+}
+
+.bookName h2 span{
+  font-size:.75rem
 }
 
 .bookName button{
@@ -325,6 +331,27 @@ main {
   color: var(--darkPurple);
 }
 
+#localStorageForm{
+  display: flex;
+  gap:1rem;
+  align-items: center;
+}
+
+#localStorageForm button{
+  padding:.5rem 1rem;
+  border-radius: 1.5rem;
+  border:0;
+  background: var(--darkPurple);
+  color:var(--white);
+  cursor: pointer;
+}
+
+#localStorageForm button:hover,
+#localStorageForm button:focus{
+  background: var(--pink);
+  color:var(--darkPurple)
+}
+
 
 @media screen and (max-width:700px) {
   .App{
@@ -384,7 +411,7 @@ main {
     max-height: fit-content;
   }
 
-  #mainTop{
+  .mainTop{
     height: auto;
   }
 

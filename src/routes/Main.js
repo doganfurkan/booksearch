@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchData } from "../redux/bookSlice";
 import { changeSearchIndex } from "../redux/bookSlice";
 import Bookcard from "../components/Bookcard";
+import MySocials from "../components/MySocials";
 
 export default function Main() {
   const loading = useSelector((state) => state.book.loading);
@@ -13,7 +14,7 @@ export default function Main() {
   const dispatch = useDispatch();
   return (
     <main>
-      <div id="mainTop">
+      <div className="mainTop">
         <div id="pagination">
           <button
             disabled={searchIndex > 0 ? false : true}
@@ -34,45 +35,16 @@ export default function Main() {
             Next Page
           </button>
         </div>
-        <div id="mySocials">
-          <a
-            href="https://www.github.com/doganfurkan"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            github
-          </a>
-          <a
-            href="https://www.instagram.com/1furkandogan1"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            instagram
-          </a>
-          <a
-            href="https://www.linkedin.com/in/furkan-doğan"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            linkedin
-          </a>
-          <a
-            href="https://www.frontendmentor.io/profile/doganfurkan"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            frontendmentor
-          </a>
-        </div>
+        <MySocials/>
       </div>
       <div id="mainGrid">
         {loading
           ? "Loading..."
           : gotError
           ? "An error occured"
-          : books.map((element, key) => {
+          : books.length > 0 ? books.map((element, key) => {
               return <Bookcard key={key} icerik={element} />;
-            })}
+            }) : "Make a search to view books"}
       </div>
     </main>
   );

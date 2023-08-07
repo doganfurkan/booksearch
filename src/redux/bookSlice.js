@@ -8,6 +8,13 @@ export const fetchData = createAsyncThunk("book/getData", async (gelen) => {
   return res.data;
 });
 
+export const fetchDetail = createAsyncThunk("book/getDetail", async (gelen) => {
+  const res = await axios(
+    `https://www.googleapis.com/books/v1/volumes/${gelen}`
+  );
+  return res.data;
+});
+
 export const bookSlice = createSlice({
   name: "book",
   initialState: {
@@ -16,7 +23,10 @@ export const bookSlice = createSlice({
     searchTerm:"",
     loading: false,
     gotError: false,
-    favoriteBooks:[]
+    localStoragePermission:false,
+    favoriteBooks:[],
+    detailBook:{},
+    detailLoading: false
   },
   reducers: {
     changeSearchTerm: (state, action) => {
@@ -31,6 +41,9 @@ export const bookSlice = createSlice({
     removeFavorite: (state, action) => {
         let myIndex = state.favoriteBooks.findIndex(item => item.id === action.payload.id);
         state.favoriteBooks.splice(myIndex, 1);
+    },
+    setLocalStoragePermission: (state, action) => {
+        state.localStoragePermission = action.payload;
     }
   },
   extraReducers: {
@@ -46,8 +59,18 @@ export const bookSlice = createSlice({
       state.loading = false;
       state.gotError = true;
     },
+    [fetchDetail.fulfilled]: (state, action) => {
+      state.detailLoading = false;
+      state.detailBook = action.payload;
+    },
+    [fetchDetail.pending]: (state) => {
+      state.detailLoading = true;
+    },
+    [fetchDetail.rejected]: (state) => {
+      state.detailLoading = false;
+    },
   },
 });
 
-export const { changeSearchTerm, changeSearchIndex, addFavorite, removeFavorite } = bookSlice.actions;
+export const { changeSearchTerm, changeSearchIndex, addFavorite, removeFavorite, setLocalStoragePermission } = bookSlice.actions;
 export default bookSlice.reducer;

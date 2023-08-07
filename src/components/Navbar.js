@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { fetchData } from "../redux/bookSlice";
 import { changeSearchTerm } from "../redux/bookSlice";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
 
   return (
     <aside>
@@ -21,6 +22,7 @@ export default function Navbar() {
           dispatch(fetchData([`${searchTerm}`, 0]));
           dispatch(changeSearchTerm(searchTerm));
           setSearchTerm("");
+          navigate("")
         }}
       >
         <div id="searchBox">
@@ -66,16 +68,35 @@ export default function Navbar() {
           </NavLink>
         </nav>
         <div id="otherProjects">
-          <h2>My Social Accounts</h2>
+          <h2>My Other Projects</h2>
           <a
-            href=""
+            href="https://doganfurkan.github.io/Furcar/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            github
+            Rent A Car Demo
           </a>
-          
-          
+          <a
+            href="https://weatherredux.netlify.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Weather App
+          </a>
+          <a
+            href="https://doganfurkan.github.io/easybank-landing-page-master/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Bank Demo
+          </a>
+          <a
+            href="https://country-fd.netlify.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Country Infos App
+          </a>          
         </div>
       </div>
     </aside>

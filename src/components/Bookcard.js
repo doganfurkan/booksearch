@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import {Link} from "react-router-dom"
 import { addFavorite, removeFavorite } from "../redux/bookSlice";
 import { useSelector } from "react-redux";
+import { fetchDetail } from "../redux/bookSlice";
 
 export default function Bookcard({ icerik }) {
   const dispatch = useDispatch();
@@ -24,11 +25,12 @@ export default function Bookcard({ icerik }) {
           <h2>
             {icerik.volumeInfo.title}
             {icerik.volumeInfo.subtitle
-              ? `: ${icerik.volumeInfo.subtitle}`
+              ? <span>: {icerik.volumeInfo.subtitle}</span>
               : ""}
           </h2>
           <button className={yourFavorites.find(item => item.id === icerik.id) ? "active" : ""} onClick={(e) => {
-            yourFavorites.find(item => item.id === icerik.id) ? dispatch(removeFavorite(icerik)) : dispatch(addFavorite(icerik))
+            yourFavorites.find(item => item.id === icerik.id) ? dispatch(removeFavorite(icerik)) : dispatch(addFavorite(icerik)
+            )
           }}>
             <img src="./assets/favoriteIcon.svg" alt="favorite" />
           </button>
@@ -50,7 +52,7 @@ export default function Bookcard({ icerik }) {
         >
           Preview
         </a>
-        <Link className="primary" to={`./book/${icerik.id}`}>See Details</Link>
+        <Link className="primary" to={`../book/${icerik.id}`} onClick={() => dispatch(fetchDetail(icerik.id))}>See Details</Link>
       </div>
     </div>
   );
