@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchData } from "../redux/bookSlice";
-import { changeSearchTerm } from "../redux/bookSlice";
+import { changeSearchTerm, changeSearchIndex } from "../redux/bookSlice";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
@@ -22,6 +22,7 @@ export default function Navbar() {
           e.preventDefault();
           dispatch(fetchData([`${searchTerm}`, 0]));
           dispatch(changeSearchTerm(searchTerm));
+          dispatch(changeSearchIndex(0))
           setSearchTerm("");
           navigate("")
         }}
