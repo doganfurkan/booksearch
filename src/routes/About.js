@@ -11,7 +11,7 @@ export default function About() {
 
     useEffect(() => {
         if(localStoragePermission)localStorage.setItem("favoriteBooks",JSON.stringify(favoriteBooks))
-    },[localStoragePermission])
+    },[localStoragePermission,favoriteBooks])
 
   return (
     <main>
