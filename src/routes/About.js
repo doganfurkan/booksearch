@@ -37,8 +37,7 @@ export default function About() {
                 <button>Submit</button>
             </form>
             <br />
-            <br />
-            {localStoragePermission ? "Congrats, your favorites are being saved in your local storage right now." : ""}
+            {localStoragePermission ? <div id="congrats">Congrats, your favorites are being saved in your local storage right now.</div> : ""}
             </div>
         </div>
     </main>

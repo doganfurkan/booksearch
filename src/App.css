@@ -157,6 +157,7 @@ main {
   color:#bbb;
   border-color:#bbb;
   pointer-events: none;
+  background: transparent;
 }
 
 #mySocials{
@@ -352,6 +353,121 @@ main {
   color:var(--darkPurple)
 }
 
+#congrats{
+  background: var(--pink);
+  color:var(--darkPurple);
+  display: inline-block;
+  padding:.75rem;
+  border-radius: .5rem;
+}
+
+#bookDiv{
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap:2rem;
+}
+
+#bookImage img{
+  width:100%;
+  border-radius: 1rem;
+  border:1px solid var(--pink)
+}
+
+#bookImage #noImage{
+  width:100%;
+  aspect-ratio: 2/3;
+  border:1px solid var(--darkPurple);
+  color:var(--darkPurple);
+  border-radius: 1rem;
+  display: grid;
+  place-items: center;
+  user-select: none;
+}
+
+#bookDetails{
+  display: flex;
+  flex-direction: column;
+  gap:1.5rem;
+}
+
+#titleAndAuthor{
+  display: flex;
+  flex-direction: column;
+  gap:.5rem;
+}
+
+#bookDetails h1{
+  color:var(--darkPurple);
+  line-height: 1.55;
+}
+
+#bookDetails h2{
+  color:var(--darkPurple);
+  font-weight: 400;
+  font-size:1.25rem;
+}
+
+#bookDetails h2 span::after{
+  content:", "
+}
+
+#bookDetails h2 span:last-child::after{
+  display: none;
+}
+
+#noDesc{
+  color:#777
+}
+
+#bookInfos span{
+  padding:.4rem .8rem;
+  border-radius: 2rem;
+  display: inline-block;
+  margin-right:.75rem;
+  font-size:.7rem;
+}
+
+#bookDetails a{
+  text-decoration: none;
+  padding:.75rem 2rem;
+  border-radius: 2rem;
+  display: inline-block;
+  width: fit-content;
+}
+
+#bookButtons{
+  display: flex;
+  gap:1rem;
+}
+
+#bookButtons button{
+  height:100%;
+  aspect-ratio: 1;
+  border:1px solid var(--darkPurple);
+  border-radius: 100%;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+#bookButtons button:hover,
+#bookButtons button:focus{
+  background: var(--pink);
+}
+
+#bookButtons button.active{
+  background: var(--darkPurple);
+}
+
+#bookButtons img{
+  height:40%;
+}
+
+#bookButtons button.active img{
+  filter:brightness(0) saturate(100%) invert(1);
+}
 
 @media screen and (max-width:700px) {
   .App{
@@ -421,6 +537,24 @@ main {
 
   #mainGrid{
     flex-grow: 1;
+  }
+
+  #bookDiv{
+    display: flex;
+    flex-direction: column;
+  }
+
+  #bookButtons a{
+    line-height: 1.5rem;
+  }
+
+  #bookButtons button{
+    padding:.75rem;
+  }
+
+  #bookButtons button img{
+    height:1.5rem;
+    aspect-ratio: 1;
   }
 }
 
