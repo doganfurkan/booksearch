@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchData } from "../redux/bookSlice";
 import { changeSearchTerm } from "../redux/bookSlice";
 import { Link, NavLink, useNavigate } from "react-router-dom";
@@ -9,6 +9,7 @@ export default function Navbar() {
   const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
+  const favoriteNumber = useSelector((state) => state.book.favoriteBooks)
 
   return (
     <aside>
@@ -56,7 +57,7 @@ export default function Navbar() {
               isPending ? "pending" : isActive ? "active" : ""
             }
           >
-            Favorites
+            Favorites ({favoriteNumber.length})
           </NavLink>
           <NavLink
             to="/about"
