@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { fetchData } from "../redux/bookSlice";
 import { changeSearchTerm } from "../redux/bookSlice";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -13,7 +13,7 @@ export default function Navbar() {
   return (
     <aside>
       <div id="logo">
-        <h1>Book Search</h1>
+        <Link to={""}><h1>Book Search</h1></Link>
         <button onClick={() => setMenuOpen(!menuOpen)}>&#8801;</button>
       </div>
       <form

@@ -13,7 +13,7 @@ export default function Main() {
   const searchIndex = useSelector((state) => state.book.searchIndex);
   const dispatch = useDispatch();
   return (
-    <main>
+    <main id="main">
       <div className="mainTop">
         <div id="pagination">
           <button
@@ -35,16 +35,18 @@ export default function Main() {
             Next Page
           </button>
         </div>
-        <MySocials/>
+        <MySocials />
       </div>
       <div id="mainGrid">
         {loading
           ? "Loading..."
           : gotError
           ? "An error occured"
-          : books.length > 0 ? books.map((element, key) => {
+          : books.length > 0
+          ? books.map((element, key) => {
               return <Bookcard key={key} icerik={element} />;
-            }) : "Make a search to view books"}
+            })
+          : "Make a search to view books"}
       </div>
     </main>
   );
