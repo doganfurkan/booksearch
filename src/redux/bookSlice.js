@@ -19,14 +19,14 @@ export const bookSlice = createSlice({
   name: "book",
   initialState: {
     books: [],
-    searchIndex:0,
-    searchTerm:"",
+    searchIndex: 0,
+    searchTerm: "",
     loading: false,
     gotError: false,
-    localStoragePermission:false,
-    favoriteBooks:[],
-    detailBook:{},
-    detailLoading: false
+    localStoragePermission: false,
+    favoriteBooks: [],
+    detailBook: {},
+    detailLoading: false,
   },
   reducers: {
     changeSearchTerm: (state, action) => {
@@ -36,15 +36,32 @@ export const bookSlice = createSlice({
       state.searchIndex = action.payload;
     },
     addFavorite: (state, action) => {
-        if(!state.favoriteBooks.find(item => item.id === action.payload.id)){state.favoriteBooks.push(action.payload)}
+      if (!state.favoriteBooks.find((item) => item.id === action.payload.id)) {
+        let favori = {
+          id: action.payload.id,
+          volumeInfo: {
+            title: action.payload.volumeInfo.title,
+            subtitle: action.payload.volumeInfo.subtitle,
+            authors: action.payload.volumeInfo.authors,
+            previewLink: action.payload.volumeInfo.previewLink,
+            imageLinks:null
+          },
+        };
+        if (action.payload.volumeInfo.imageLinks) {
+          favori.volumeInfo.imageLinks = action.payload.volumeInfo.imageLinks;
+        }
+        state.favoriteBooks.push(favori);
+      }
     },
     removeFavorite: (state, action) => {
-        let myIndex = state.favoriteBooks.findIndex(item => item.id === action.payload.id);
-        state.favoriteBooks.splice(myIndex, 1);
+      let myIndex = state.favoriteBooks.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      state.favoriteBooks.splice(myIndex, 1);
     },
     setLocalStoragePermission: (state, action) => {
-        state.localStoragePermission = action.payload;
-    }
+      state.localStoragePermission = action.payload;
+    },
   },
   extraReducers: {
     [fetchData.fulfilled]: (state, action) => {
@@ -72,5 +89,11 @@ export const bookSlice = createSlice({
   },
 });
 
-export const { changeSearchTerm, changeSearchIndex, addFavorite, removeFavorite, setLocalStoragePermission } = bookSlice.actions;
+export const {
+  changeSearchTerm,
+  changeSearchIndex,
+  addFavorite,
+  removeFavorite,
+  setLocalStoragePermission,
+} = bookSlice.actions;
 export default bookSlice.reducer;
