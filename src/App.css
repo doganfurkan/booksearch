@@ -17,7 +17,7 @@ body {
 
 .App {
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 18rem 1fr;
   max-width: 1900px;
   margin:0 auto
 }
@@ -46,6 +46,8 @@ aside {
   padding: 0 2.5rem;
   max-height: 100vh;
   overflow-y: auto;
+  position: sticky;
+  top:0;
 }
 
 #logo {
@@ -138,8 +140,6 @@ aside nav a:focus {
 }
 
 main {
-  overflow-y: auto;
-  height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -505,6 +505,7 @@ main {
     padding:0.5rem 2rem 0 !important;
     overflow: hidden;
     flex-shrink: 0;
+    position: static;
   }
 
   #logo{
@@ -583,9 +584,9 @@ main {
   }
 }
 
-@media screen and (max-width:1000px){
+@media screen and (min-width:1000px){
   .App{
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1fr 3fr;
   }
 
   aside{
@@ -593,8 +594,14 @@ main {
   }
 }
 
-@media screen and (max-width:1300px){
+@media screen and (min-width:1300px){
   .App{
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr 4fr;
+  }
+}
+
+@media screen and (min-width:1900px){
+  #mainGrid{
+    border-radius: 2rem 2rem 0 0;
   }
 }
