@@ -52,7 +52,7 @@ export default function Book() {
                 </span>
               </div>
               {thisBook.volumeInfo.description ? (
-                <p>{thisBook.volumeInfo.description}</p>
+                <div dangerouslySetInnerHTML={{__html: thisBook.volumeInfo.description}}></div>
               ) : (
                 <p id="noDesc">No description</p>
               )}
