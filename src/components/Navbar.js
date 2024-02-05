@@ -38,7 +38,7 @@ export default function Navbar() {
             required
           />
           <button>
-            <img src="./assets/searchIcon.svg" alt="search" />
+            <img src="/assets/searchIcon.svg" alt="search" />
           </button>
         </div>
       </form>
