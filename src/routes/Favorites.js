@@ -13,8 +13,8 @@ export default function Favorites() {
         </div>
       <div className="mainGrid">
         {
-            yourFavorites.length > 0 ? yourFavorites.map((item) => {
-                return <Bookcard icerik={item} />;
+            yourFavorites.length > 0 ? yourFavorites.map((item, key) => {
+                return <Bookcard icerik={item} key={key} />;
               }) : "You don't have any favorites yet"
         }
       </div>

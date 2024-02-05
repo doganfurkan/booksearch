@@ -38,8 +38,8 @@ export default function Book() {
                   )}
                 </h1>
                 <h2>
-                  {thisBook.volumeInfo.authors.map((item) => (
-                    <span>{item}</span>
+                  {thisBook.volumeInfo.authors.map((item, key) => (
+                    <span key={key}>{item}</span>
                   ))}
                 </h2>
               </div>
