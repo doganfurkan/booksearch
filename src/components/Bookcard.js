@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import {Link} from "react-router-dom"
 import { addFavorite, removeFavorite } from "../redux/bookSlice";
 import { useSelector } from "react-redux";
-import { fetchDetail } from "../redux/bookSlice";
 
 export default function Bookcard({ icerik }) {
   const dispatch = useDispatch();
@@ -52,7 +51,7 @@ export default function Bookcard({ icerik }) {
         >
           Preview
         </a>
-        <Link className="primary" to={`../book/${icerik.id}`} onClick={() => dispatch(fetchDetail(icerik.id))}>See Details</Link>
+        <Link className="primary" to={`../book/${icerik.id}`}>See Details</Link>
       </div>
     </div>
   );

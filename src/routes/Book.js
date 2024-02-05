@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MySocials from "../components/MySocials";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { addFavorite, removeFavorite } from "../redux/bookSlice";
+import { fetchDetail } from "../redux/bookSlice";
+import { useParams } from "react-router-dom";
 
 export default function Book() {
   const thisBook = useSelector((state) => state.book.detailBook);
   const detailLoading = useSelector((state) => state.book.detailLoading);
   const yourFavorites = useSelector((state) => state.book.favoriteBooks);
   const dispatch = useDispatch();
+  const {bookId} = useParams();
+
+  useEffect(() => {
+    dispatch(fetchDetail(bookId))
+  },[bookId, dispatch])
 
   return (
     <main>
