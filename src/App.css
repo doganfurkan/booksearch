@@ -259,6 +259,8 @@ main {
 
 .bookCard img {
   border-radius: 0.5rem;
+  max-width: 100%;
+  object-fit: contain;
 }
 
 .bookCard .noImage {
