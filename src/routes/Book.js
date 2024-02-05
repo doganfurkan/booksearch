@@ -30,7 +30,7 @@ export default function Book() {
             <div id="bookDetails">
               <div id="titleAndAuthor">
                 <h1>
-                  {thisBook.volumeInfo.title}{" "}
+                  {thisBook.volumeInfo.title ? thisBook.volumeInfo.title : "No Title"}
                   {thisBook.volumeInfo.subtitle ? (
                     <span>: {thisBook.volumeInfo.subtitle}</span>
                   ) : (
@@ -38,17 +38,17 @@ export default function Book() {
                   )}
                 </h1>
                 <h2>
-                  {thisBook.volumeInfo.authors.map((item, key) => (
+                  {thisBook.volumeInfo.authors ? thisBook.volumeInfo.authors.map((item, key) => (
                     <span key={key}>{item}</span>
-                  ))}
+                  )) : "No Author"}
                 </h2>
               </div>
               <div id="bookInfos">
                 <span className="secondary">
-                  {thisBook.volumeInfo.pageCount} pages
+                  {thisBook.volumeInfo.pageCount ? thisBook.volumeInfo.pageCount : "Unknown"} pages
                 </span>
                 <span className="secondary">
-                  Language: {thisBook.volumeInfo.language.toUpperCase()}
+                  Language: {thisBook.volumeInfo.language ? thisBook.volumeInfo.language.toUpperCase() : "Unknown"}
                 </span>
               </div>
               {thisBook.volumeInfo.description ? (
