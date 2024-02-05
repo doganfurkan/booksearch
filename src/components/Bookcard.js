@@ -13,7 +13,7 @@ export default function Bookcard({ icerik }) {
     <div className="bookCard">
       {icerik.volumeInfo.imageLinks ? (
         <img
-          src={icerik.volumeInfo.imageLinks.thumbnail}
+          src={(icerik.volumeInfo.imageLinks.smallThumbnail || icerik.volumeInfo.imageLinks.thumbnail)}
           alt="#"
           height="200px"
         />
