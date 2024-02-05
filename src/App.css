@@ -17,64 +17,73 @@ body {
 
 html,
 body,
-#root{
+#root {
   height: 100%;
 }
 
 .App {
-  display: grid;
-  grid-template-columns: 18rem 1fr;
   max-width: 1900px;
-  margin:0 auto;
-  min-height: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
 }
 
-button#goTop{
+button#goTop {
   position: fixed;
-  left:50%;
-  bottom:.5rem;
+  left: 50%;
+  bottom: 0.5rem;
   background: var(--white);
-  padding:.5rem 1rem;
-  color:var(--darkPurple);
+  padding: 0.5rem 1rem;
+  color: var(--darkPurple);
   border-radius: 2rem;
-  border:1px solid var(--darkPurple);
+  border: 1px solid var(--darkPurple);
   line-height: 1rem;
-  font-size:.8rem;
+  font-size: 0.8rem;
   transform: translateX(-50%);
-  transition: .25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
 }
 
-button#goTop.hidden{
-  transform: translateX(-50%) translateY(calc(100% + .5rem));
+button#goTop.hidden {
+  transform: translateX(-50%) translateY(calc(100% + 0.5rem));
 }
 
 aside {
-  padding: 0 2.5rem;
   max-height: 100vh;
-  overflow-y: auto;
-  position: sticky;
-  top:0;
+  padding: 0.5rem 2rem 0;
+  overflow: hidden;
+  flex-shrink: 0;
+  position: static;
 }
 
 #logo {
   line-height: 2rem;
-  padding: 2rem 0;
   color: var(--darkPurple);
+  padding: 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-#logo a{
-  color:inherit;
+#logo a {
+  color: inherit;
   text-decoration: none;
 }
 
-#logo h1{
+#logo h1 {
   font-size: 1.5rem;
   font-weight: 600;
 }
 
-#logo button{
-  display: none;
+#logo button {
+  background: transparent;
+  color: var(--darkPurple);
+  border: 0;
+  font-size: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
 }
 
 #searchBox {
@@ -100,11 +109,21 @@ aside {
   align-items: center;
 }
 
+#menu {
+  height: 0;
+}
+
+#menu.active {
+  height: fit-content;
+}
+
 aside nav {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  margin-top: 2rem;
+  margin: 0;
+    gap: 1rem;
+    padding-top: 1rem;
+    align-items: center;
 }
 
 aside nav a {
@@ -113,8 +132,8 @@ aside nav a {
   text-decoration: none;
 }
 
-aside nav a.active{
-  font-weight:600
+aside nav a.active {
+  font-weight: 600;
 }
 
 aside nav a:hover,
@@ -122,91 +141,96 @@ aside nav a:focus {
   text-decoration: underline;
 }
 
-#otherProjects{
+#otherProjects {
   margin-top: 2.5rem;
+  display: none;
 }
 
-#otherProjects h2{
-  font-size:1.25rem;
+#otherProjects h2 {
+  font-size: 1.25rem;
   color: var(--darkPurple);
   font-weight: 600;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
-#otherProjects a{
+#otherProjects a {
   display: block;
   text-decoration: none;
-  padding:.75rem 0;
-  color:var(--darkPurple);
-  font-size:1.25rem;
+  padding: 0.75rem 0;
+  color: var(--darkPurple);
+  font-size: 1.25rem;
 }
 
 #otherProjects a:hover,
-#otherProjects a:focus{
+#otherProjects a:focus {
   text-decoration: underline;
 }
 
 main {
+  min-width: none;
+  overflow-y: hidden;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  min-width: 0;
+  height: 100%;
+  max-height: fit-content;
 }
 
-.mainTop{
+.mainTop {
   display: flex;
   justify-content: space-between;
-  width:100%;
-  padding:1rem 2rem;
-  height:6rem;
-  gap:1rem;
+  width: 100%;
+  padding: 1rem 2rem;
+  gap: 1rem;
   flex-shrink: 0;
   align-items: center;
   overflow-x: auto;
+  height: auto;
 }
 
-#pagination{
+#pagination {
   display: flex;
-  gap:1rem;
+  gap: 1rem;
   flex-shrink: 0;
 }
 
-#pagination button{
-  padding:.5rem 1rem;
+#pagination button {
+  padding: 0.5rem 1rem;
   background: transparent;
   border-radius: 1.5rem;
-  color:var(--darkPurple);
+  color: var(--darkPurple);
   cursor: pointer;
-  border:1px solid var(--darkPurple);
+  border: 1px solid var(--darkPurple);
   white-space: nowrap;
 }
 
 #pagination button:hover,
-#pagination button:focus{
+#pagination button:focus {
   background: var(--darkPurple);
-  color:var(--white)
+  color: var(--white);
 }
 
-#pagination button:disabled{
-  color:#bbb;
-  border-color:#bbb;
+#pagination button:disabled {
+  color: #bbb;
+  border-color: #bbb;
   pointer-events: none;
   background: transparent;
 }
 
-#mySocials{
+#mySocials {
   display: flex;
-  gap:1rem;
+  gap: 1rem;
   justify-content: flex-end;
   flex-grow: 1;
 }
 
-#mySocials a{
+#mySocials a {
   color: var(--darkPurple);
   text-decoration: none;
 }
 
 #mySocials a:hover,
-#mySocials a:focus{
+#mySocials a:focus {
   text-decoration: underline;
 }
 
@@ -222,65 +246,66 @@ main {
   align-items: start;
 }
 
-.bookCard{
-  border:.5rem solid var(--pink);
+.bookCard {
+  border: 0.5rem solid var(--pink);
   border-radius: 1rem;
-  padding:1rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap:1rem;
+  gap: 1rem;
+  max-width: 30rem;
 }
 
-.bookCard img{
-  border-radius: .5rem;
+.bookCard img {
+  border-radius: 0.5rem;
 }
 
-.bookCard .noImage{
+.bookCard .noImage {
   height: 200px;
   display: flex;
   align-items: center;
-  width:141px;
-  border:1px solid #ccc;
+  width: 141px;
+  border: 1px solid #ccc;
   justify-content: center;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   user-select: none;
 }
 
-.bookDetails{
+.bookDetails {
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap:.75rem;
+  gap: 0.75rem;
 }
 
-.bookName{
+.bookName {
   display: flex;
-  gap:1rem;
+  gap: 1rem;
   justify-content: space-between;
   width: 100%;
   align-items: flex-start;
 }
 
-.bookName h2{
+.bookName h2 {
   font-size: 1rem;
   font-weight: 600;
   color: var(--darkPurple);
   overflow: hidden;
-   display: -webkit-box;
-   -webkit-line-clamp: 5;
-           line-clamp: 5; 
-   -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+  -webkit-box-orient: vertical;
 }
 
-.bookName h2 span{
-  font-size:.75rem
+.bookName h2 span {
+  font-size: 0.75rem;
 }
 
-.bookName button{
-  width:1.5rem;
+.bookName button {
+  width: 1.5rem;
   aspect-ratio: 1;
-  border:1px solid var(--darkPurple);
+  border: 1px solid var(--darkPurple);
   border-radius: 50%;
   background: transparent;
   flex-shrink: 0;
@@ -290,198 +315,198 @@ main {
   cursor: pointer;
 }
 
-.bookName button.active{
-  background:var(--darkPurple)
+.bookName button.active {
+  background: var(--darkPurple);
 }
 
-.bookName button.active img{
-  filter:brightness(0) saturate(100%) invert(1);
+.bookName button.active img {
+  filter: brightness(0) saturate(100%) invert(1);
 }
 
-.bookName button img{
-  width:60%
+.bookName button img {
+  width: 60%;
 }
 
-.authorName{
-  font-size:.75rem;
-  color:var(--darkPurple);
+.authorName {
+  font-size: 0.75rem;
+  color: var(--darkPurple);
 }
 
-.authorName span{
-  margin-right:.3rem;
+.authorName span {
+  margin-right: 0.3rem;
 }
 
-.authorName span::after{
+.authorName span::after {
   content: ",";
 }
 
-.authorName span:last-child{
-  margin:0
+.authorName span:last-child {
+  margin: 0;
 }
 
-.authorName span:last-child::after{
+.authorName span:last-child::after {
   display: none;
 }
 
-.bookButtons{
+.bookButtons {
   display: flex;
-  gap:.75rem;
+  gap: 0.75rem;
   align-self: stretch;
-  width:100%;
+  width: 100%;
   overflow: hidden;
 }
 
-.bookButtons a{
-  padding:.5rem 1rem;
-  font-size:.75rem;
+.bookButtons a {
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
   white-space: nowrap;
   border-radius: 2rem;
-  width:100%;
+  width: 100%;
   cursor: pointer;
-  transition: .25s;
+  transition: 0.25s;
   display: flex;
   justify-content: center;
   align-items: center;
   text-decoration: none;
 }
 
-.secondary{
+.secondary {
   border: 1px solid var(--darkPurple);
   background: transparent;
-  color:var(--darkPurple);
-}
-
-.secondary:hover,
-.secondary:focus{
-  background: var(--pink);
-  border:1px solid var(--pink)
-}
-
-.primary{
-  background: var(--darkPurple);
-  color: var(--white);
-  border:1px solid var(--darkPurple)
-}
-
-.primary:hover,
-.primary:focus{
-  background: var(--pink);
-  border:1px solid var(--pink);
   color: var(--darkPurple);
 }
 
-#localStorageForm{
+.secondary:hover,
+.secondary:focus {
+  background: var(--pink);
+  border: 1px solid var(--pink);
+}
+
+.primary {
+  background: var(--darkPurple);
+  color: var(--white);
+  border: 1px solid var(--darkPurple);
+}
+
+.primary:hover,
+.primary:focus {
+  background: var(--pink);
+  border: 1px solid var(--pink);
+  color: var(--darkPurple);
+}
+
+#localStorageForm {
   display: flex;
-  gap:1rem;
+  gap: 1rem;
   align-items: center;
 }
 
-#localStorageForm button{
-  padding:.5rem 1rem;
+#localStorageForm button {
+  padding: 0.5rem 1rem;
   border-radius: 1.5rem;
-  border:0;
+  border: 0;
   background: var(--darkPurple);
-  color:var(--white);
+  color: var(--white);
   cursor: pointer;
 }
 
 #localStorageForm button:hover,
-#localStorageForm button:focus{
+#localStorageForm button:focus {
   background: var(--pink);
-  color:var(--darkPurple)
+  color: var(--darkPurple);
 }
 
-#congrats{
+#congrats {
   background: var(--pink);
-  color:var(--darkPurple);
+  color: var(--darkPurple);
   display: inline-block;
-  padding:.75rem;
-  border-radius: .5rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
 }
 
-#bookDiv{
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  gap:2rem;
+#bookDiv {
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
 }
 
-#bookImage img{
-  width:100%;
+#bookImage img {
+  width: 100%;
   border-radius: 1rem;
-  border:1px solid var(--pink)
+  border: 1px solid var(--pink);
 }
 
-#bookImage #noImage{
-  width:100%;
+#bookImage #noImage {
+  width: 100%;
   aspect-ratio: 2/3;
-  border:1px solid var(--darkPurple);
-  color:var(--darkPurple);
+  border: 1px solid var(--darkPurple);
+  color: var(--darkPurple);
   border-radius: 1rem;
   display: grid;
   place-items: center;
   user-select: none;
 }
 
-#bookDetails{
+#bookDetails {
   display: flex;
   flex-direction: column;
-  gap:1.5rem;
+  gap: 1.5rem;
 }
 
-#titleAndAuthor{
+#titleAndAuthor {
   display: flex;
   flex-direction: column;
-  gap:.5rem;
+  gap: 0.5rem;
 }
 
-#bookDetails h1{
-  color:var(--darkPurple);
+#bookDetails h1 {
+  color: var(--darkPurple);
   line-height: 1.55;
 }
 
-#bookDetails h2{
-  color:var(--darkPurple);
+#bookDetails h2 {
+  color: var(--darkPurple);
   font-weight: 400;
-  font-size:1.25rem;
+  font-size: 1.25rem;
 }
 
-#bookDetails h2 span::after{
-  content:", "
+#bookDetails h2 span::after {
+  content: ", ";
 }
 
-#bookDetails h2 span:last-child::after{
+#bookDetails h2 span:last-child::after {
   display: none;
 }
 
-#noDesc{
-  color:#777
+#noDesc {
+  color: #777;
 }
 
-#bookInfos span{
-  padding:.4rem .8rem;
+#bookInfos span {
+  padding: 0.4rem 0.8rem;
   border-radius: 2rem;
   display: inline-block;
-  margin-right:.75rem;
-  font-size:.7rem;
+  margin-right: 0.75rem;
+  font-size: 0.7rem;
 }
 
-#bookDetails a{
+#bookDetails a {
   text-decoration: none;
-  padding:.75rem 2rem;
+  padding: 0.75rem 2rem;
   border-radius: 2rem;
   display: inline-block;
   width: fit-content;
 }
 
-#bookButtons{
+#bookButtons {
   display: flex;
-  gap:1rem;
+  gap: 1rem;
 }
 
-#bookButtons button{
-  height:100%;
+#bookButtons button {
+  height: 100%;
   aspect-ratio: 1;
-  border:1px solid var(--darkPurple);
+  border: 1px solid var(--darkPurple);
   border-radius: 100%;
   background: transparent;
   display: flex;
@@ -491,131 +516,107 @@ main {
 }
 
 #bookButtons button:hover,
-#bookButtons button:focus{
+#bookButtons button:focus {
   background: var(--pink);
 }
 
-#bookButtons button.active{
+#bookButtons button.active {
   background: var(--darkPurple);
 }
 
-#bookButtons img{
-  height:40%;
+#bookButtons img {
+  height: 40%;
 }
 
-#bookButtons button.active img{
-  filter:brightness(0) saturate(100%) invert(1);
+#bookButtons button.active img {
+  filter: brightness(0) saturate(100%) invert(1);
 }
 
-@media screen and (max-width:700px) {
-  .App{
-    display: flex;
-    flex-direction: column;
-    min-height:100svh;
+#bookButtons a {
+  line-height: 1.5rem;
+}
+
+#bookButtons button {
+  padding: 0.75rem;
+}
+
+#bookButtons button img {
+  height: 1.5rem;
+  aspect-ratio: 1;
+}
+
+@media screen and (min-width: 700px) {
+  .App {
+    display: grid;
+    grid-template-columns: 18rem 1fr;
+    min-height: 100%;
   }
 
-  aside{
-    padding:0.5rem 2rem 0 !important;
-    overflow: hidden;
-    flex-shrink: 0;
-    position: static;
+  aside {
+    overflow-y: auto;
+    position: sticky;
+    top: 0;
+    padding: 0 1.5rem;
   }
 
-  #logo{
-    padding:1rem 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  #logo {
+    padding: 2rem 0;
   }
 
-  #logo button{
-    background: transparent;
-    color: var(--darkPurple);
-    border:0;
-    font-size:2rem;
-    height:2rem;
-    display: flex;
-    align-items: center;
-  }
-
-  #menu{
-    height:0;
-  }
-
-  #menu.active{
-    height:fit-content
-  }
-
-  aside nav{
-    margin:0;
-    gap:1rem;
-    padding-top: 1rem;
-    align-items: center;
-  }
-
-  #otherProjects{
+  #logo button {
     display: none;
   }
 
-  main{
-    overflow-y: hidden;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    max-height: fit-content;
+  aside nav {
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding:0;
+    align-items: flex-start;
   }
 
-  .mainTop{
-    height: auto;
+  #otherProjects {
+    display: block;
   }
 
-  #pagination button{
-    width:100%
+  .mainTop {
+    height: 6rem;
   }
 
-  #mainGrid{
-    flex-grow: 1;
+  #bookDiv {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   }
 
-  #bookDiv{
-    display: flex;
-    flex-direction: column;
-  }
-
-  #bookButtons a{
-    line-height: 1.5rem;
-  }
-
-  #bookButtons button{
-    padding:.75rem;
-  }
-
-  #bookButtons button img{
-    height:1.5rem;
-    aspect-ratio: 1;
-  }
+  
 }
 
-@media screen and (min-width:1000px){
-  .App{
+@media screen and (min-width: 1000px) {
+  .App {
     grid-template-columns: 1fr 3fr;
   }
 
-  aside{
-    padding:0 1.5rem
+  aside {
+    padding: 0 1.5rem;
+  }
+
+  #bookDiv {
+    grid-template-columns: 1fr 2fr;
   }
 }
 
-@media screen and (min-width:1300px){
-  .App{
+@media screen and (min-width: 1300px) {
+  .App {
     grid-template-columns: 1fr 4fr;
   }
+
+  #bookDiv {
+    grid-template-columns: 1fr 3fr;
+  }
 }
 
-@media screen and (min-width:1900px){
+@media screen and (min-width: 1900px) {
   #mainGrid,
-  .mainGrid{
-    border-radius: 2rem 2rem 0 0
+  .mainGrid {
+    border-radius: 2rem 2rem 0 0;
   }
 }
