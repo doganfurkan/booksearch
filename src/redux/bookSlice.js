@@ -63,29 +63,30 @@ export const bookSlice = createSlice({
       state.localStoragePermission = action.payload;
     },
   },
-  extraReducers: {
-    [fetchData.fulfilled]: (state, action) => {
+  extraReducers: (builder) => {
+    builder
+    .addCase(fetchData.fulfilled, (state, action) => {
       state.loading = false;
       state.books = action.payload.items;
-    },
-    [fetchData.pending]: (state) => {
+    })
+    .addCase(fetchData.pending, (state) => {
       state.loading = true;
       state.gotError = false;
-    },
-    [fetchData.rejected]: (state) => {
+    })
+    .addCase(fetchData.rejected, (state) => {
       state.loading = false;
       state.gotError = true;
-    },
-    [fetchDetail.fulfilled]: (state, action) => {
+    })
+    .addCase(fetchDetail.fulfilled, (state, action) => {
       state.detailLoading = false;
       state.detailBook = action.payload;
-    },
-    [fetchDetail.pending]: (state) => {
+    })
+    .addCase(fetchDetail.pending, (state) => {
       state.detailLoading = true;
-    },
-    [fetchDetail.rejected]: (state) => {
+    })
+    .addCase(fetchDetail.rejected, (state) => {
       state.detailLoading = false;
-    },
+    })
   },
 });
 
