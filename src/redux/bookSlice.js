@@ -25,7 +25,16 @@ export const bookSlice = createSlice({
     gotError: false,
     localStoragePermission: false,
     favoriteBooks: [],
-    detailBook: {},
+    detailBook: {
+      selfLink: "https://google.com",
+      volumeInfo: {
+        title: "Nutuk",
+        authors: ["Mustafa Kemal ATATÜRK"],
+      },
+      description:"Description",
+      pageCount: 0,
+      language:"tr"
+    },
     detailLoading: false,
   },
   reducers: {
@@ -44,7 +53,7 @@ export const bookSlice = createSlice({
             subtitle: action.payload.volumeInfo.subtitle,
             authors: action.payload.volumeInfo.authors,
             previewLink: action.payload.volumeInfo.previewLink,
-            imageLinks:null
+            imageLinks: null,
           },
         };
         if (action.payload.volumeInfo.imageLinks) {
@@ -65,28 +74,28 @@ export const bookSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-    .addCase(fetchData.fulfilled, (state, action) => {
-      state.loading = false;
-      state.books = action.payload.items;
-    })
-    .addCase(fetchData.pending, (state) => {
-      state.loading = true;
-      state.gotError = false;
-    })
-    .addCase(fetchData.rejected, (state) => {
-      state.loading = false;
-      state.gotError = true;
-    })
-    .addCase(fetchDetail.fulfilled, (state, action) => {
-      state.detailLoading = false;
-      state.detailBook = action.payload;
-    })
-    .addCase(fetchDetail.pending, (state) => {
-      state.detailLoading = true;
-    })
-    .addCase(fetchDetail.rejected, (state) => {
-      state.detailLoading = false;
-    })
+      .addCase(fetchData.fulfilled, (state, action) => {
+        state.loading = false;
+        state.books = action.payload.items;
+      })
+      .addCase(fetchData.pending, (state) => {
+        state.loading = true;
+        state.gotError = false;
+      })
+      .addCase(fetchData.rejected, (state) => {
+        state.loading = false;
+        state.gotError = true;
+      })
+      .addCase(fetchDetail.fulfilled, (state, action) => {
+        state.detailLoading = false;
+        state.detailBook = action.payload;
+      })
+      .addCase(fetchDetail.pending, (state) => {
+        state.detailLoading = true;
+      })
+      .addCase(fetchDetail.rejected, (state) => {
+        state.detailLoading = false;
+      });
   },
 });
 
