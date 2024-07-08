@@ -57,7 +57,10 @@ export const bookSlice = createSlice({
           },
         };
         if (action.payload.volumeInfo.imageLinks) {
-          favori.volumeInfo.imageLinks = action.payload.volumeInfo.imageLinks;
+          let sssss = {
+            thumbnail: action.payload.volumeInfo.imageLinks.thumbnail
+          }
+          favori.volumeInfo.imageLinks = sssss;
         }
         state.favoriteBooks.push(favori);
       }
